@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import Base, engine
-from app.routers import health, users, reports, admin
+from app.routers import health, users, reports, admin, home
 from app.seed import seed_admin_user
 
 
@@ -30,7 +30,7 @@ app = FastAPI(
 
 raw_origins = os.environ.get(
     "FRONTEND_ORIGINS",
-    "http://localhost:5173,http://127.0.0.1:5173",
+    "http://localhost:5173,http://127.0.0.1:5173,https://fire-alert-mu.vercel.app/",
 )
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 
@@ -42,6 +42,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(home.router)
 app.include_router(health.router, prefix="/api")
 app.include_router(users.router, prefix="/api/users")
 app.include_router(reports.router, prefix="/api/reports")

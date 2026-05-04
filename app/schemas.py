@@ -77,3 +77,7 @@ class ErrorResponse(BaseModel):
 
 class HealthStatus(BaseModel):
     status: str
+
+class HomeResponse(BaseModel):
+    message: str
+    timestamp: datetime
