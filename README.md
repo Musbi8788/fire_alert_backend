@@ -120,6 +120,16 @@ Deploy this `backend` folder as the Railway service.
 
 This folder includes `railway.json`, so Railway can detect the build and deploy settings automatically.
 
+Deploy from GitHub:
+
+1. Push this backend code to GitHub.
+2. In Railway, create a new project.
+3. Choose **Deploy from GitHub repo**.
+4. Select this repository.
+5. If Railway asks for the root directory, set it to `backend`.
+6. Deploy the service.
+7. Open the service **Settings** tab, go to **Networking**, and generate a public domain.
+
 Railway configuration:
 
 - Root directory: `backend`
