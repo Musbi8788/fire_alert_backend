@@ -6,6 +6,8 @@ The production backend is intended to run on **Railway**, while the frontend is 
 
 Live frontend demo: https://fire-alert-mu.vercel.app/
 
+Production API: https://fire-alert-backend-production.up.railway.app/
+
 ## System Overview
 
 Fire Alert connects citizens with emergency response teams by collecting structured fire reports with GPS coordinates and making them available to administrators in a command-center dashboard.
@@ -155,7 +157,7 @@ Production notes:
 - Do not use SQLite in production.
 - Keep `JWT_SECRET` private and rotate it if exposed.
 - Set `FRONTEND_ORIGINS` exactly to the Vercel frontend domain, plus any custom domain you add later.
-- After Railway gives you the backend URL, add it to the frontend as `VITE_API_BASE_URL`.
+- Add the Railway backend URL to Vercel as `VITE_API_BASE_URL=https://fire-alert-backend-production.up.railway.app`.
 
 ## Database
 
@@ -193,4 +195,4 @@ backend/
 - `ADMIN_PASSWORD` is changed from the default.
 - `FRONTEND_ORIGINS` includes the deployed Vercel URL.
 - `/api/healthz` returns `{"status":"ok"}` after deployment.
-- Frontend `VITE_API_BASE_URL` points to the Railway backend URL.
+- Frontend `VITE_API_BASE_URL` points to `https://fire-alert-backend-production.up.railway.app`.
