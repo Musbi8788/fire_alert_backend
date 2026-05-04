@@ -1,0 +1,14 @@
+[project]
+name = "fire-alert"
+version = "0.1.0"
+description = "Fire Alert Application"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.135.2",
+    "passlib[bcrypt]>=1.7.4",
+    "psycopg2-binary>=2.9.11",
+    "python-dotenv>=1.2.2",
+    "python-jose[cryptography]>=3.5.0",
+    "sqlalchemy>=2.0.48",
+    "uvicorn[standard]>=0.42.0",
+]

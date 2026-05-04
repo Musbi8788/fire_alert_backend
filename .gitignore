@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# local environment and data
+.env
+*.db
+*.sqlite
+*.sqlite3
+
+# tool output
+.pytest_cache/
+.ruff_cache/
+
+# system files
+.DS_Store
+Thumbs.db
