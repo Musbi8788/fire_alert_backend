@@ -41,7 +41,11 @@ allow_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allow_origins,
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1):\d+$",
+    allow_origin_regex=(
+        r"^https?://(localhost|127\.0\.0\.1):\d+$"
+        r"|^https://fire-alert-mu\.vercel\.app$"
+        r"|^https://fire-alert-[a-z0-9-]+\.vercel\.app$"
+    ),
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],

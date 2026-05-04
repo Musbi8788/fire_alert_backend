@@ -116,6 +116,18 @@ Production `FRONTEND_ORIGINS` should include:
 FRONTEND_ORIGINS=https://fire-alert-mu.vercel.app
 ```
 
+Do not include a trailing slash in origins. This is valid:
+
+```env
+FRONTEND_ORIGINS=https://fire-alert-mu.vercel.app
+```
+
+This is not a valid CORS origin match:
+
+```env
+FRONTEND_ORIGINS=https://fire-alert-mu.vercel.app/
+```
+
 ## Railway Deployment
 
 Deploy this `backend` folder as the Railway service.
