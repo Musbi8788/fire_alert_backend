@@ -1,6 +1,6 @@
 from datetime import datetime
-from typing import Optional
 from enum import Enum
+
 from pydantic import BaseModel, Field
 
 
@@ -14,7 +14,7 @@ class RegisterRequest(BaseModel):
     username: str = Field(min_length=3, max_length=50)
     password: str = Field(min_length=6)
     fullName: str
-    phone: Optional[int] = None
+    phone: int | None = None
 
 
 class LoginRequest(BaseModel):
@@ -26,7 +26,7 @@ class UserProfile(BaseModel):
     id: int
     username: str
     fullName: str
-    phone: Optional[str] = None
+    phone: str | None = None
     isAdmin: bool
     createdAt: str
 
@@ -40,7 +40,7 @@ class CreateReportRequest(BaseModel):
     description: str = Field(min_length=10)
     latitude: float
     longitude: float
-    address: Optional[str] = None
+    address: str | None = None
 
 
 class FireReport(BaseModel):
@@ -48,11 +48,11 @@ class FireReport(BaseModel):
     userId: int
     username: str
     fullName: str
-    phone: Optional[str] = None
+    phone: str | None = None
     description: str
     latitude: float
     longitude: float
-    address: Optional[str] = None
+    address: str | None = None
     status: str
     createdAt: str
     updatedAt: str
@@ -60,7 +60,7 @@ class FireReport(BaseModel):
 
 class UpdateStatusRequest(BaseModel):
     status: ReportStatus
-    notes: Optional[str] = None
+    notes: str | None = None
 
 
 class AdminStats(BaseModel):

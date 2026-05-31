@@ -1,10 +1,12 @@
-from typing import List
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models import User, FireReport as FireReportModel
-from app.schemas import CreateReportRequest, FireReport
+
 from app.auth import require_auth
+from app.database import get_db
+from app.models import FireReport as FireReportModel
+from app.models import User
+from app.schemas import CreateReportRequest, FireReport
 
 router = APIRouter(tags=["reports"])
 
@@ -46,7 +48,7 @@ def create_report(
     return _serialize(report, current_user)
 
 
-@router.get("", response_model=List[FireReport])
+@router.get("", response_model=list[FireReport])
 def get_user_reports(
     db: Session = Depends(get_db),
     current_user: User = Depends(require_auth),

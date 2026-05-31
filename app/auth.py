@@ -1,11 +1,12 @@
 import os
-import bcrypt
 from datetime import datetime, timedelta
-from typing import Optional
-from jose import JWTError, jwt
+
+import bcrypt
 from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from jose import JWTError, jwt
 from sqlalchemy.orm import Session
+
 from app.database import get_db
 from app.models import User
 
@@ -39,7 +40,7 @@ def decode_token(token: str) -> dict:
 
 
 def require_auth(
-    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme),
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
     db: Session = Depends(get_db),
 ) -> User:
     if not credentials:

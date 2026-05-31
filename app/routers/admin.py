@@ -1,16 +1,18 @@
 from datetime import datetime
-from typing import List, Optional
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models import User, FireReport as FireReportModel
-from app.schemas import FireReport, UpdateStatusRequest, AdminStats
+
 from app.auth import require_admin
+from app.database import get_db
+from app.models import FireReport as FireReportModel
+from app.models import User
+from app.schemas import AdminStats, FireReport, UpdateStatusRequest
 
 router = APIRouter(tags=["admin","manager"])
 
 
-def _serialize(report: FireReportModel, user: Optional[User]) -> FireReport:
+def _serialize(report: FireReportModel, user: User | None) -> FireReport:
     return FireReport(
         id=report.id,
         userId=report.user_id,
@@ -27,10 +29,10 @@ def _serialize(report: FireReportModel, user: Optional[User]) -> FireReport:
     )
 
 
-@router.get("/reports", response_model=List[FireReport])
+@router.get("/reports", response_model=list[FireReport])
 def get_admin_reports(
-    status: Optional[str] = Query(None),
-    since: Optional[str] = Query(None),
+    status: str | None = Query(None),
+    since: str | None = Query(None),
     db: Session = Depends(get_db),
     _: User = Depends(require_admin),
 ):
