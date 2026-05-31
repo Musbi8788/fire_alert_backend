@@ -37,18 +37,19 @@ Core backend responsibilities:
 
 ## API Surface
 
-All API routes are mounted under `/api`.
+Most routes are mounted under `/api`. The root welcome route is served at `/`.
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| `GET` | `/api/healthz` | Health check |
-| `POST` | `/api/users/register` | Register a user |
-| `POST` | `/api/users/login` | Login and receive a JWT |
-| `POST` | `/api/reports` | Submit a fire report |
-| `GET` | `/api/reports` | Get the authenticated user's reports |
-| `GET` | `/api/admin/reports` | Get all reports, optionally filtered by status |
-| `PATCH` | `/api/admin/reports/{report_id}/status` | Update a report status |
-| `GET` | `/api/admin/stats` | Get admin dashboard totals |
+| Method | Endpoint | Auth | Description |
+| --- | --- | --- | --- |
+| `GET` | `/` | none | Welcome message and timestamp |
+| `GET` | `/api/healthz` | none | Health check |
+| `POST` | `/api/users/register` | none | Register a user |
+| `POST` | `/api/users/login` | none | Login and receive a JWT |
+| `POST` | `/api/reports` | user | Submit a fire report |
+| `GET` | `/api/reports` | user | Get the authenticated user's reports |
+| `GET` | `/api/admin/reports` | admin | Get all reports; optional `?status=` and `?since=` (ISO 8601) filters |
+| `PATCH` | `/api/admin/reports/{report_id}/status` | admin | Update a report status |
+| `GET` | `/api/admin/stats` | admin | Get admin dashboard totals |
 
 Interactive API documentation is available at `/docs` when the backend is running.
 
