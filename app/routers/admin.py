@@ -7,7 +7,7 @@ from app.models import User, FireReport as FireReportModel
 from app.schemas import FireReport, UpdateStatusRequest, AdminStats
 from app.auth import require_admin
 
-router = APIRouter(tags=["admin"])
+router = APIRouter(tags=["admin","manager"])
 
 
 def _serialize(report: FireReportModel, user: Optional[User]) -> FireReport:
