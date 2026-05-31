@@ -32,11 +32,7 @@ raw_origins = os.environ.get(
     "FRONTEND_ORIGINS",
     "http://localhost:5173,http://127.0.0.1:5173,https://fire-alert-mu.vercel.app",
 )
-allow_origins = [
-    origin.strip().rstrip("/")
-    for origin in raw_origins.split(",")
-    if origin.strip()
-]
+allow_origins = [origin.strip().rstrip("/") for origin in raw_origins.split(",") if origin.strip()]
 
 app.add_middleware(
     CORSMiddleware,

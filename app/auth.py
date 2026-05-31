@@ -62,7 +62,7 @@ def require_auth(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={"error": "Unauthorized", "message": "Invalid or expired token"},
-        )
+        ) from None
 
 
 def require_admin(current_user: User = Depends(require_auth)) -> User:

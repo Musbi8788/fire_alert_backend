@@ -1,10 +1,10 @@
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel, Field
 
 
-class ReportStatus(str, Enum):
+class ReportStatus(StrEnum):
     pending = "pending"
     in_progress = "in-progress"
     resolved = "resolved"
@@ -77,6 +77,7 @@ class ErrorResponse(BaseModel):
 
 class HealthStatus(BaseModel):
     status: str
+
 
 class HomeResponse(BaseModel):
     message: str

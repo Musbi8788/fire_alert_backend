@@ -9,7 +9,7 @@ from app.models import FireReport as FireReportModel
 from app.models import User
 from app.schemas import AdminStats, FireReport, UpdateStatusRequest
 
-router = APIRouter(tags=["admin","manager"])
+router = APIRouter(tags=["admin", "manager"])
 
 
 def _serialize(report: FireReportModel, user: User | None) -> FireReport:
